@@ -14,12 +14,6 @@ namespace case_study_core
             string lastName = GetInput("What is your last name?", lengthLimit);
 
             FizzbuzzLikeAll(firstName, lastName);
-            //for (int i = 1; i <= 100; i++)
-            //{ 
-            //    string strOut = FizzbuzzLikeEach(firstName, lastName, i);
-            //    Console.WriteLine(strOut);
-
-            //}
         }
 
         public static string GetInput(string message, int lengthLimit)
@@ -27,25 +21,36 @@ namespace case_study_core
             Console.WriteLine(message);
             string name = Console.ReadLine();
 
-            // todo: move to own method.
-            // todo: remove comment
-            //Checking length of the names and exiting if too long.
-            int len = name.Length;
-            if (len > lengthLimit)
+            //Checking the length and character type, only alphabets are accepted.
+            if (!IsLessThanLimit(name, lengthLimit) || !IsAlphabet(name))
             {
-                string str = "Please enter " + $"{lengthLimit}" + " or less number of characters.";
-                Console.WriteLine(str);
-                Environment.Exit(0);
-
-            }
-
-            // todo: move to own method
-            if (!Regex.IsMatch(name, @"^[a-zA-Z]+$")) {
-                Console.WriteLine("Please enter only alphabets.");
                 Environment.Exit(0);
             }
 
             return name;
+        }
+
+        public static bool IsLessThanLimit(string name, int lengthLimit) {
+            bool boolV = true;
+            var len = name.Length;
+            if (len > lengthLimit)
+            {
+                var str = "Please enter " + $"{lengthLimit}" + " or less number of characters.";
+                Console.WriteLine(str);
+                boolV = false;
+            }
+            return boolV;
+        }
+
+        public static bool IsAlphabet(string name)
+        {
+            bool boolV = true;
+            if (!Regex.IsMatch(name, @"^[a-zA-Z]+$"))
+            {
+                Console.WriteLine("Please enter only alphabets.");
+                boolV = false;
+            }
+            return boolV;
         }
 
         public static string FizzbuzzLikeEach(string firstName, string lastName, int num)
