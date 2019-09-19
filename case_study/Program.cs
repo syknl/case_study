@@ -7,13 +7,12 @@ namespace case_study_core
     {
         public static void Main()
         {
-            // Limit of name length.
-            const int lengthLimit = 20;
+            const int nameLengthLimit = 20;
 
-            string firstName = GetInput("What is your first name?", lengthLimit);
-            string lastName = GetInput("What is your last name?", lengthLimit);
+            string firstName = GetInput("What is your first name?", nameLengthLimit);
+            string lastName = GetInput("What is your last name?", nameLengthLimit);
 
-            FizzbuzzLikeAll(firstName, lastName);
+            ProcessNames(firstName, lastName);
         }
 
         public static string GetInput(string message, int lengthLimit)
@@ -21,7 +20,6 @@ namespace case_study_core
             Console.WriteLine(message);
             string name = Console.ReadLine();
 
-            //Checking the length and character type, only alphabets are accepted.
             if (!IsLessThanLimit(name, lengthLimit) || !IsAlphabet(name))
             {
                 Environment.Exit(0);
@@ -30,12 +28,12 @@ namespace case_study_core
             return name;
         }
 
-        public static bool IsLessThanLimit(string name, int lengthLimit) {
+        public static bool IsLessThanLimit(string name, int nameLengthLimit) {
             bool boolV = true;
             var len = name.Length;
-            if (len > lengthLimit)
+            if (len > nameLengthLimit)
             {
-                var str = "Please enter " + $"{lengthLimit}" + " or less number of characters.";
+                var str = "Please enter maximum " + $"{nameLengthLimit}" + " characters.";
                 Console.WriteLine(str);
                 boolV = false;
             }
@@ -47,26 +45,26 @@ namespace case_study_core
             bool boolV = true;
             if (!Regex.IsMatch(name, @"^[a-zA-Z]+$"))
             {
-                Console.WriteLine("Please enter only alphabets.");
+                Console.WriteLine("Please enter only alphabetical charaters.");
                 boolV = false;
             }
             return boolV;
         }
 
-        public static string FizzbuzzLikeEach(string firstName, string lastName, int num)
-        {
-            string str = (num % 3 == 0 ? firstName : "") + (num % 15 == 0 ? " " : "") + (num % 5 == 0 ? lastName : "");
-            return (str.Length == 0 ? $"{num}" : str);
-        }
-
-        public static void FizzbuzzLikeAll(string firstName, string lastName)
+        public static void ProcessNames(string firstName, string lastName)
         {
             for (int i = 1; i <= 100; i++)
             {
-                var strOut = FizzbuzzLikeEach(firstName, lastName, i);
+                var strOut = CalcFizzBuzz(firstName, lastName, i);
                 Console.WriteLine(strOut);
             }
             return;
+        }
+
+        public static string CalcFizzBuzz(string firstName, string lastName, int num)
+        {
+            string str = (num % 3 == 0 ? firstName : "") + (num % 15 == 0 ? " " : "") + (num % 5 == 0 ? lastName : "");
+            return (str.Length == 0 ? $"{num}" : str);
         }
     }
 }

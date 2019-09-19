@@ -15,7 +15,7 @@ namespace case_study_test
             var mockNumber = 2;
             var expected = "2";
 
-            var fizzbuzzValue = Program.FizzbuzzLikeEach(mockFirstName, mockLastName, mockNumber);
+            var fizzbuzzValue = Program.CalcFizzBuzz(mockFirstName, mockLastName, mockNumber);
             Assert.AreEqual(expected, fizzbuzzValue);
         }
 
@@ -25,7 +25,7 @@ namespace case_study_test
             var mockNumber = 3;
             var expected = "Sayaka";
 
-            var fizzbuzzValue = Program.FizzbuzzLikeEach(mockFirstName, mockLastName, mockNumber);
+            var fizzbuzzValue = Program.CalcFizzBuzz(mockFirstName, mockLastName, mockNumber);
             Assert.AreEqual(expected, fizzbuzzValue);
         }
 
@@ -35,7 +35,7 @@ namespace case_study_test
             var mockNumber = 10;
             var expected = "Ishihara";
 
-            var fizzbuzzValue = Program.FizzbuzzLikeEach(mockFirstName, mockLastName, mockNumber);
+            var fizzbuzzValue = Program.CalcFizzBuzz(mockFirstName, mockLastName, mockNumber);
             Assert.AreEqual(expected, fizzbuzzValue);
         }
 
@@ -45,7 +45,7 @@ namespace case_study_test
             var mockNumber = 30;
             var expected = "Sayaka Ishihara";
 
-            var fizzbuzzValue = Program.FizzbuzzLikeEach(mockFirstName, mockLastName, mockNumber);
+            var fizzbuzzValue = Program.CalcFizzBuzz(mockFirstName, mockLastName, mockNumber);
             Assert.AreEqual(expected, fizzbuzzValue);
         }
     }
@@ -76,7 +76,6 @@ namespace case_study_test
         }
 
     }
-
 
     [TestClass]
     public class UnitTestIsAlphabet
